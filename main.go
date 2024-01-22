@@ -9,7 +9,10 @@ func main() {
 	c := criu.MakeCriu()
 	version, err := c.GetCriuVersion()
 	if err != nil {
+		log.Println("Error getting CRIU version:")
 		log.Fatalln(err)
+	} else {
+		log.Println("CRIU version:")
+		log.Println(version)
 	}
-	log.Println(version)
 }
