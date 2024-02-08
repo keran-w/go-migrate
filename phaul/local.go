@@ -15,15 +15,6 @@ type Config struct {
 	Wdir  string
 }
 
-// Remote interface
-// Rpc between PhaulClient and PhaulServer. When client
-// calls anything on this one, the corresponding method
-// should be called on PhaulServer object.
-type Remote interface {
-	StartIter() error
-	StopIter() error
-}
-
 // Local interface
 // Interface to local classes. Client calls them when it needs something on the source node.
 //
@@ -40,6 +31,9 @@ type Remote interface {
 //     set Ps.Fd to comm.Memfd
 //     set ParentImg to lastClientImagesPath
 //     set TrackMem to true
-type Local interface {
-	DumpCopyRestore(criu *criu.Criu, c Config, lastClientImagesPath string) error
+type Local struct {
+}
+
+func (li *Local) DumpCopyRestore(criu *criu.Criu, c Config, lastClientImagesPath string) error {
+	return nil
 }
