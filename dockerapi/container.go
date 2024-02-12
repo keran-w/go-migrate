@@ -1,4 +1,4 @@
-package main
+package dockerapi
 
 import (
 	"context"
@@ -7,7 +7,7 @@ import (
 	"github.com/docker/docker/client"
 	"github.com/docker/docker/pkg/stdcopy"
 	"os"
-	"time"
+	// "time"
 )
 
 // UNUSED is a utility function to explicitly ignore unused variables.
@@ -96,7 +96,7 @@ func NewContainer(containerName, imageName string, env []string) (*Container, er
 }
 
 // containerStart starts a container by its name. If it does not exist, it creates and starts a new container with the given image and environment variables.
-func (c *Container) start() {
+func (c *Container) Start() {
 	ctx := context.Background()
 	cli, err := newDockerClient()
 	if err != nil {
@@ -113,7 +113,7 @@ func (c *Container) start() {
 
 // stop stops and removes the specified container.
 // Logs any errors encountered during the stop or remove operations.
-func (c *Container) stop() {
+func (c *Container) Stop() {
 	ctx := context.Background()
 	cli, err := newDockerClient()
 	if err != nil {
@@ -131,7 +131,7 @@ func (c *Container) stop() {
 
 // copyOutput attaches to the container's output streams and copies them to the local standard output and standard error.
 // It runs in a separate goroutine to not block the main execution flow.
-func (c *Container) copyOutput() {
+func (c *Container) CopyOutput() {
 	go func() {
 		ctx := context.Background()
 		cli, err := newDockerClient()
@@ -157,25 +157,4 @@ func (c *Container) copyOutput() {
 			fmt.Println("Error copying container output:", err)
 		}
 	}()
-}
-
-func main() {
-	containerName := "m1-num-printer-container"
-	container, err := NewContainer(containerName, "m1-num-printer", nil)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	container.start()
-	container.copyOutput()
-	// time.Sleep(1 * time.Second)
-	container.stop()
-
-	// UNUSED(container)
-	UNUSED(time.Second)
-
-	// container.start()
-	// container.copyOutput()
-	// time.Sleep(5 * time.Second)
-	// container.stop()
 }
