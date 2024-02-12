@@ -1,6 +1,7 @@
 #!/bin/sh
 START=${START:-1}
 for i in $(seq $START 100); do
-  echo $i
+  export START=$i
+  echo START
   sleep 1
 done

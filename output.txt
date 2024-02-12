@@ -1,0 +1,241 @@
+    1  ls
+    2  docker
+    3  sudo apt update
+    4  ls
+    5  cd /
+    6  ls
+    7  cd ~
+    8  code .
+    9  git clone https://github.com/keran-w/go-migrate.git
+   10  ls
+   11  cd go-migrate/
+   12  code .
+   13  exit
+   14  ls ..
+   15  ls ../go
+   16  ls ../criu/
+   17  cd ..
+   18  git clone https://github.com/checkpoint-restore/go-criu.git
+   19  ls go-criu/
+   20  cp go-criu/phaul/* go-migrate/phaul/
+   21  docker
+   22  chmod +x scripts/install_docker.sh 
+   23  ./scripts/install_docker.sh 
+   24  git add .
+   25  git commit -m "copy phaul start code"
+   26  git push
+   27  docker build images/m1-number-printer -t m1-number-printer
+   28  ./scripts/install_docker.sh 
+   29  docker build images/m1-number-printer -t m1-number-printer
+   30  sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+   31  docker build images/m1-number-printer -t m1-number-printer
+   32  sudo docker build images/m1-number-printer -t m1-number-printer
+   33  docker run m1-number-printer
+   34  sudo docker run m1-number-printer
+   35  docker ls
+   36  docker ps
+   37  sudo docker ps
+   38  docker images
+   39  sudo docker images
+   40  sudo docker build images/m1-number-printer -t m1-number-printer
+   41  docker images
+   42  sudo docker images
+   43  docker image prune
+   44  docker rmi $(docker images -f "dangling=true" -q)
+   45  sudo docker rmi $(docker images -f "dangling=true" -q)
+   46  sudo apt-get update
+   47  sudo apt-get install docker-ce docker-ce-cli containerd.io
+   48  docker version
+   49  docker image prune
+   50  docker version
+   51  sudo docker version
+   52  sudo docker rmi $(docker images -f "dangling=true" -q)
+   53  docker images
+   54  sudo docker images
+   55  docker ps -a
+   56  sudp docker ps -a
+   57  sudo docker ps -a
+   58  docker rmi 3f24fe2083b2
+   59  sudo docker rmi 3f24fe2083b2
+   60  sudo docker rmi 55e806d30eb1
+   61  docker stop 
+   62  docker stop  -a
+   63  sudo docker stop 3f24fe2083b2  
+   64  sudo docker rmi 55e806d30eb1
+   65  docker ps -a
+   66  sudo docker ps -a
+   67  docker system prune -a
+   68  docker info
+   69  sudo docker info
+   70  sudo docker images
+   71  sudo apt-get update
+   72  sudo docker info
+   73  sudo docker system prune -a
+   74  sudo docker info
+   75  sudo docker images
+   76  sudo docker build images/m1-number-printer -t m1-number-printer
+   77  sudo docker run m1-number-printer
+   78  docker ps
+   79  sudo docker ps
+   80  sudo docker ps -a
+   81  docker start practical_meitner
+   82  sudo docker start practical_meitner
+   83  sudo docker run m1-number-printer
+   84  sudo docker ps -a
+   85  sudo usermod -aG docker ubuntu
+   86  newgrp docker
+   87  docker ps -a
+   88  docker start -a practical_meitner
+   89  docker ps -a
+   90  docker stop objective_kilby
+   91  docker rm objective_kilby
+   92  docker ps -a
+   93  docker start -a practical_meitner
+   94  git add .
+   95  git commit -m "0206 Set up docker and create number printer"
+   96  git push
+   97  cd ..
+   98  aws configure
+   99  pwd
+  100  code .
+  101  exit
+  102  docker start -a practical_meitner
+  103  docker inspect --format '{{.State.Pid}}' container_name_or_id
+  104  docker [s
+  105  docker ps
+  106  docker inspect --format '{{.State.Pid}}' 34a0a0bb136d
+  107  docker inspect
+  108  ps aux
+  109  docker inspect --format '{{.State.Pid}}' 34a0a0bb136d
+  110  go mod init
+  111  go get phaul@v0
+  112  go get ./phaul@v0
+  113  go get ./phaul
+  114  go build ./phaul/
+  115  go mod init go-migrate
+  116  go build service/
+  117  go build ./service/
+  118  git add .
+  119  git commit -m "0208 Starter code"
+  120  git add .
+  121  git commit -m "0208 Remove unused code"
+  122  git push
+  123  go get goMigrate
+  124  go get goMigrate/phaul
+  125  go build -v ./...
+  126  git add .
+  127  git checkout
+  128  git checkout dev/local
+  129  git pull
+  130  git merge main
+  131  git merge master
+  132  git pull
+  133  git branch -a
+  134  git pull
+  135  docker ps
+  136  history
+  137  docker start -a practical_meitner
+  138  git add .
+  139  git commit -m "0208 Integrate docker-client"
+  140  git push
+  141  docker build images/m1-number-printer/
+  142  docker ps
+  143  docker images
+  144  docker build images/m1-number-printer/ -t m1-number-printer
+  145  docker images
+  146  docker run m1-number-printer
+  147  go run monitor/output.go 
+  148  docker ps
+  149  go run monitor/container.go 
+  150  go build monitor/container.go 
+  151  go get github.com/docker/docker/api/types
+  152  go get github.com/docker/docker/client
+  153  go get github.com/docker/docker/pkg/stdcopy
+  154  go run monitor/container.go 
+  155  go version
+  156  cd ..
+  157  wget https://golang.org/dl/go1.22.0.linux-amd64.tar.gz
+  158  sudo tar -C /usr/local -xzf go1.22.0.linux-amd64.tar.gz 
+  159  go version
+  160  rm -rf /usr/local/go && tar -C /usr/local -xzf go1.22.0.linux-amd64.tar.gz
+  161  sudo rm -rf /usr/local/go && tar -C /usr/local -xzf go1.22.0.linux-amd64.tar.gz
+  162  go version
+  163  sudo rm -rf /usr/local/go 
+  164  sudo tar -C /usr/local -xzf go1.22.0.linux-amd64.tar.gz 
+  165  go version
+  166  sudo apt-get remove golang-go
+  167  go version
+  168  sudo tar -C /usr/local -xzf go1.22.0.linux-amd64.tar.gz 
+  169  export PATH=$PATH:/usr/local/go/bin
+  170  go run monitor/container.go 
+  171  cd go-migrate/
+  172  go run monitor/container.go 
+  173  docker ps
+  174  go run monitor/container.go 
+  175  docker ps
+  176  go run monitor/container.go 
+  177  docker ps
+  178  go run monitor/output.go 
+  179  git branch -a
+  180  git checkout dev/docker-client
+  181  git pull
+  182  go run monitor/container.go 
+  183  which go
+  184  export PATH=$PATH:/usr/local/go/bin
+  185  which go
+  186  go run monitor/container.go 
+  187  ls
+  188  go run ./moniter/container.go 
+  189  go run ./moniter/output.go 
+  190  go run moniter/container.go 
+  191  docker ps
+  192  docker images
+  193  docker ps
+  194  go run moniter/container.go 
+  195  docker run --name m1-num-printer-container m1-number-printer
+  196  go run moniter/container.go 
+  197  docker ps -a
+  198  docker start m1-num-printer-container
+  199  docker run m1-num-printer-container
+  200  docker ps
+  201  go run moniter/container.go 
+  202  docker ps
+  203  docker ps -a
+  204  go run moniter/container.go 
+  205  docker ps -a
+  206  go run moniter/container.go 
+  207  docker start m1-num-printer-container
+  208  go run moniter/container.go 
+  209  go run dockerapi/container.go 
+  210  git branch -a
+  211  git add .
+  212  git commit -m "0209 Add Docker API Usage"
+  213  git push
+  214  go run moniter/output.go 
+  215  go build dockerapi/
+  216  go get dockerapi
+  217  git branch -a
+  218  go mod init github.com/keran-w
+  219  go mod init github.com/keran-w/go-migrate
+  220  go mod tidy
+  221  go run test/container.go 
+  222  git add .
+  223  git commit -m "0211 Implement Docker API package"
+  224  git push
+  225  git branch -a
+  226  git config --global credential.helper cache
+  227  git push
+  228  git fetch
+  229  go run test/container-A.go 
+  230  go run test/container-B.go 
+  231  go run test/container-B.go 
+  232  go run test/container-A.go 
+  233  go run test/container-B.go 
+  234  go run test/container.go  B
+  235  go run test/container.go B
+  236  go run test/container.go 
+  237  go run test/container.go A 
+  238  go run test/container.go B
+  239  go run test/container.go A
+  240  history
+  241  history > output.txt

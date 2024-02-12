@@ -7,6 +7,7 @@ import (
 	"github.com/docker/docker/client"
 	"github.com/docker/docker/pkg/stdcopy"
 	"os"
+	"strings"
 	// "time"
 )
 
@@ -27,9 +28,9 @@ func newDockerClient() (*client.Client, error) {
 	return cli, err
 }
 
-// findContainer is a helper function that searches for a container by name.
+// FindContainer is a helper function that searches for a container by name.
 // It returns the found Container struct and nil if the container exists, or an empty Container struct and an error if not.
-func findContainer(containerName string) (Container, error) {
+func FindContainer(containerName string) (Container, error) {
 	ctx := context.Background()
 	cli, err := newDockerClient()
 	if err != nil {
@@ -64,7 +65,7 @@ func findContainer(containerName string) (Container, error) {
 // It returns a pointer to the Container struct and an error if any.
 func NewContainer(containerName, imageName string, env []string) (*Container, error) {
 	// Attempt to find the container first
-	foundContainer, err := findContainer(containerName)
+	foundContainer, err := FindContainer(containerName)
 	if err == nil {
 		fmt.Println("Container found, no need to create a new one.")
 		return &foundContainer, nil
@@ -127,6 +128,47 @@ func (c *Container) Stop() {
 	}
 
 	fmt.Printf("Container %s stopped\n", c.Name)
+}
+
+// replaceOrAppendEnv searches for an environment variable in a slice of strings.
+// If found, it replaces its value. If not, it appends the variable with the new value.
+func replaceOrAppendEnv(env []string, key, newValue string) []string {
+	keyPrefix := key + "="
+	found := false
+
+	for i, v := range env {
+		if strings.HasPrefix(v, keyPrefix) {
+			env[i] = keyPrefix + newValue
+			found = true
+			break
+		}
+	}
+
+	if !found {
+		env = append(env, keyPrefix+newValue)
+	}
+
+	return env
+}
+
+func (c *Container) Migrate(newContainerName string) *Container {
+	fmt.Printf("Migrating container %s to %s\n", c.Name, newContainerName)
+	currImage := c.Image
+
+	updatedEnv := &container.Config{
+        Image: currImage,
+        Env:   []string{"START=50"},
+    }
+	// fmt.Printf("Updated Env: %v\n", currEnv)
+
+	newContainer, err := NewContainer(newContainerName, currImage, updatedEnv.Env)
+	if err != nil {
+		fmt.Println("Error creating new container:", err)
+		return nil
+	}
+
+	newContainer.Start()
+	return newContainer
 }
 
 // copyOutput attaches to the container's output streams and copies them to the local standard output and standard error.
