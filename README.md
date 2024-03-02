@@ -16,10 +16,6 @@ The primary challenge of live container migration lies in its efficiency and tra
 
 Our approach to live container migration involves several stages of pre-dumping and synchronization between the source and target containers. Utilizing Docker's experimental feature for Checkpoint and Restore, based on CRIU, we plan to enhance this process for live migration. The project will leverage Docker APIs for its implementation, allowing for greater flexibility and customization in designing migration strategies.
 
-## Flowchart
-
-![client-server-communication](assets/graphs/client-server-communication.png)
-
 ## Client Engine
 
 ![client-engine](assets/graphs/client-engine.png)
@@ -27,6 +23,10 @@ Our approach to live container migration involves several stages of pre-dumping 
 ## Server Engine
 
 ![server-engine](assets/graphs/server-engine.png)
+
+## Communication Between Client and Server
+
+![client-server-communication](assets/graphs/client-server-communication.png)
 
 ## Project Plan
 
