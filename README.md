@@ -14,7 +14,19 @@ The primary challenge of live container migration lies in its efficiency and tra
 
 ## Methodology
 
-Our approach to live container migration involves several stages of pre-dumping and synchronization between the source and target containers. Utilizing Docker's experimental feature for Checkpoint and Restore, based on CRIU, we plan to enhance this process for live migration. The project will leverage Go-CRIU for its implementation, allowing for greater flexibility and customization in designing migration strategies.
+Our approach to live container migration involves several stages of pre-dumping and synchronization between the source and target containers. Utilizing Docker's experimental feature for Checkpoint and Restore, based on CRIU, we plan to enhance this process for live migration. The project will leverage Docker APIs for its implementation, allowing for greater flexibility and customization in designing migration strategies.
+
+## Flowchart
+
+![client-server-communication](assets/graphs/client-server-communication.png)
+
+## Client Engine
+
+![client-engine](assets/graphs/client-engine.png)
+
+## Server Engine
+
+![server-engine](assets/graphs/server-engine.png)
 
 ## Project Plan
 
@@ -24,10 +36,9 @@ Our approach to live container migration involves several stages of pre-dumping 
 - **Milestone Two:** Add support for filesystem and network I/O in the migration process.
 - **Milestone Three:** Enable cross-instance live migration, potentially utilizing cloud services like AWS.
 
-
 ## Environment Requirement
 
-The project requires a Linux (Ubuntu) environment with Docker for container creation and management. The development will primarily be in Go, utilizing the Go-CRIU bindings for interaction with CRIU.
+The project requires a Linux (Ubuntu) environment with Docker for container creation and management. The development will primarily be in Go, utilizing the Docker APIs.
 
 ## License
 
