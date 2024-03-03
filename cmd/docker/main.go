@@ -8,7 +8,7 @@ import (
 func main() {
 
 	imageName := "m1-number-printer-image:1.0"
-	containerName := "m1-number-printer-container-A"
+	containerName := "m1-number-printer-container-B"
 	env := []string{"START=50", "END=3000"}
 	container, err := docker.NewContainer(containerName, imageName, env)
 	if err != nil {
@@ -16,6 +16,6 @@ func main() {
 		return
 	}
 	container.Start()
-	// container.Stop()
+	container.Stop()
 
 }
