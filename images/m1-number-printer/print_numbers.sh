@@ -1,7 +1,9 @@
 #!/bin/sh
-START=${START:-1}
-for i in $(seq $START 100); do
-  export START=$i
-  echo START
+START="${START:-1}"
+END="${END:-100}"
+
+for i in $(seq "$START" "$END"); do
+  CURR="$i"
+  echo "$CURR"
   sleep 1
 done
