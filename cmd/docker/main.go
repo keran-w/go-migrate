@@ -16,6 +16,6 @@ func main() {
 		return
 	}
 	container.Start()
-	container.Stop()
+	// container.Stop()
 
 }

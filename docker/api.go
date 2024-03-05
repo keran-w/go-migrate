@@ -39,3 +39,7 @@ func startContainer(ctx context.Context, cli *client.Client, containerID string)
 func stopContainer(ctx context.Context, cli *client.Client, containerID string) error {
 	return cli.ContainerStop(ctx, containerID, container.StopOptions{})
 }
+
+// TODO: checkpoint method
+
+// TODO: restore method
