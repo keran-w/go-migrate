@@ -2,7 +2,9 @@ package docker
 
 import (
 	"context"
+
 	"github.com/docker/docker/api/types"
+	"github.com/docker/docker/api/types/checkpoint"
 	"github.com/docker/docker/api/types/container"
 	"github.com/docker/docker/client"
 )
@@ -40,6 +42,10 @@ func stopContainer(ctx context.Context, cli *client.Client, containerID string) 
 	return cli.ContainerStop(ctx, containerID, container.StopOptions{})
 }
 
-// TODO: checkpoint method
+func createCheckpoint(ctx context.Context, cli *client.Client, containerName string, options checkpoint.CreateOptions) error {
+	return cli.CheckpointCreate(ctx, containerName, options)
+}
 
-// TODO: restore method
+func restoreCheckpoint(ctx context.Context, cli *client.Client, containerID string, options container.StartOptions) error {
+	return cli.ContainerStart(ctx, containerID, options)
+}

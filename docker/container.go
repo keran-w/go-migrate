@@ -2,17 +2,19 @@ package docker
 
 import (
 	"context"
-	"github.com/docker/docker/api/types/container"
-	"github.com/docker/docker/pkg/stdcopy"
-	"github.com/keran-w/go-migrate/utils"
 	"log"
 	"os"
 	"strings"
+
+	"github.com/docker/docker/api/types/checkpoint"
+	"github.com/docker/docker/api/types/container"
+	"github.com/docker/docker/pkg/stdcopy"
 )
 
 // Container represents a Docker container with basic configuration.
 type Container struct {
 	Name  string
+	ID    string
 	Image string
 	Env   []string
 }
@@ -43,10 +45,10 @@ func NewContainer(containerName, imageName string, env []string) (*Container, er
 		return nil, err
 	}
 
-	utils.UNUSED(resp)
+	// utils.UNUSED(resp)
 
 	log.Printf("New container %s created.\n", containerName)
-	return &Container{Name: containerName, Image: imageName, Env: env}, nil
+	return &Container{Name: containerName, ID: resp.ID, Image: imageName, Env: env}, nil
 }
 
 func (c *Container) Start() {
@@ -123,6 +125,31 @@ func (c *Container) CopyOutput() {
 	}
 }
 
+func (c *Container) Checkpoint(checkpointID string, checkpointDir string, exit bool) error {
+	ctx := context.Background()
+	cli, err := newDockerClient()
+	if err != nil {
+		log.Fatalf("Error creating Docker client: %v", err)
+		return err
+	}
+
+	// TODO: check duplicated checkpoint name?
+	options := checkpoint.CreateOptions{CheckpointID: checkpointID, CheckpointDir: checkpointDir, Exit: exit}
+	return createCheckpoint(ctx, cli, c.Name, options)
+}
+
+func (c *Container) Restore(checkpointID, checkpointDir string) error {
+	ctx := context.Background()
+	cli, err := newDockerClient()
+	if err != nil {
+		log.Fatalf("Error creating Docker client: %v", err)
+		return err
+	}
+
+	options := container.StartOptions{CheckpointID: checkpointID}
+	return restoreCheckpoint(ctx, cli, c.Name, options)
+}
+
 // FindContainer searches for a container by name.
 func FindContainer(containerName string) (*Container, error) {
 	ctx := context.Background()
@@ -148,7 +175,3 @@ func FindContainer(containerName string) (*Container, error) {
 	}
 	return nil, nil
 }
-
-// TODO: checkpoint method
-
-// TODO: restore method

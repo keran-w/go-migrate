@@ -1,8 +1,9 @@
 package main
 
 import (
-	"github.com/keran-w/go-migrate/docker"
 	"log"
+
+	"github.com/keran-w/go-migrate/docker"
 )
 
 func main() {
@@ -13,10 +14,16 @@ func main() {
 		log.Fatalf("Error finding container %s: %v", containerName, err)
 		return
 	}
-	// TODO: call the checkpoint method
-	varName := "CURR"
-	value := container.GetState(varName)
-	log.Printf("Container %s state %s: %s\n", containerName, varName, value)
+
+	err = container.Checkpoint("checkpointB", "/tmp", false)
+	if err != nil {
+		log.Fatalf("Error creating checkpoint for container %s: %v", containerName, err)
+		return
+	}
+
+	// varName := "CURR"
+	// value := container.GetState(varName)
+	// log.Printf("Container %s state %s: %s\n", containerName, varName, value)
 
 	//netType := "tcp"
 	//host := "localhost"
