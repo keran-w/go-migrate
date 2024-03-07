@@ -1,0 +1,1 @@
+go build -o ./pkg/server ./cmd/server && go build -o ./pkg/client ./cmd/client && go build -o ./pkg/docker ./cmd/docker

@@ -2,13 +2,12 @@ package docker
 
 import (
 	"context"
-	"log"
-	"os"
-	"strings"
-
 	"github.com/docker/docker/api/types/checkpoint"
 	"github.com/docker/docker/api/types/container"
 	"github.com/docker/docker/pkg/stdcopy"
+	"log"
+	"os"
+	"strings"
 )
 
 // Container represents a Docker container with basic configuration.
@@ -134,7 +133,11 @@ func (c *Container) Checkpoint(checkpointID string, checkpointDir string, exit b
 	}
 
 	// TODO: check duplicated checkpoint name?
-	options := checkpoint.CreateOptions{CheckpointID: checkpointID, CheckpointDir: checkpointDir, Exit: exit}
+	options := checkpoint.CreateOptions{
+		CheckpointID:  checkpointID,
+		CheckpointDir: checkpointDir,
+		Exit:          exit,
+	}
 	return createCheckpoint(ctx, cli, c.Name, options)
 }
 
