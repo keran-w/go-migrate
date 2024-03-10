@@ -18,7 +18,7 @@ func main() {
 
 	log.Printf("Creating checkpoint for container %s...\n", containerName)
 	// checkpointName := "checkpointA-" + time.Now().Format("MM-DDTHH-mm")
-	checkpointName := "checkpointA-2"
+	checkpointName := "checkpointA-1"
 	checkpointDir := "/home/ubuntu/go-migrate/checkpoints"
 	err = container.Checkpoint(checkpointName, checkpointDir, false)
 	if err != nil {
