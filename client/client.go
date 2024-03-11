@@ -1,12 +1,5 @@
 package client
 
-// build image (sh scripts/build_images) 
-// -> run docker/main.go (new container running the image)
-// client create checkpoint -> send checkpoint -> server receive checkpoint -> process
-// -> server evaluate -> server sends evaluate results to client
-// if finish, client stops the container and send remaining pages
-// if not, repeat
-
 import (
 	"encoding/json"
 	"fmt"
