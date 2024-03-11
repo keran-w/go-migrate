@@ -11,7 +11,7 @@ import (
 
 func main() {
 	imageName := "m1-number-printer-image:1.0"
-	containerName := "m1-number-printer-container-B-clone"
+	containerName := "m1-number-printer-container-B"
 	env := []string{"START=50", "END=3000"}
 	container, err := docker.NewContainer(containerName, imageName, env)
 	if err != nil {
@@ -25,9 +25,10 @@ func main() {
 	// port := "9988"
 	// server.StartServer(netType, host, port)
 
-	checkpointDir := "/tmp"
-	checkpointID := "checkpointB"
+	checkpointID := "checkpointA-1"
+	checkpointDir := "/home/ubuntu/go-migrate/checkpoints"
 	src := filepath.Join(checkpointDir, checkpointID)
+
 	dst := filepath.Join("/var/lib/docker/containers", container.ID, "checkpoints", checkpointID)
 	err = os.Rename(src, dst)
 	if err != nil {
@@ -39,4 +40,5 @@ func main() {
 	if err != nil {
 		log.Fatalf("Error restoreing from checkpoint %s: %v", checkpointID, err)
 	}
+	container.Start()
 }

@@ -25,6 +25,14 @@ Our approach to live container migration involves several stages of pre-dumping 
 - **Milestone Three:** Enable cross-instance live migration, potentially utilizing cloud services like AWS.
 
 
+## How to run
+
+- Build image `sh scripts/build_image_1.sh`
+- Build packages `sh scripts/build_pkg.sh`
+- Create container `./pkg/docker`
+- Create checkpoint`./pkg/client`
+- Restore checkpoint `./pkg/server`
+
 ## Environment Requirement
 
 The project requires a Linux (Ubuntu) environment with Docker for container creation and management. The development will primarily be in Go, utilizing the Go-CRIU bindings for interaction with CRIU.
