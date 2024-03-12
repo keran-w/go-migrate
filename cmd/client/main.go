@@ -89,8 +89,12 @@ func main() {
 		// checkpointName := "checkpointA-" + time.Now().Format("MM-DDTHH-mm")
 		maxIter := 2
 		for i := 0; i < maxIter; i++ {
+			finalCheckpoint := false
+			if i == maxIter-1 {
+				finalCheckpoint = true
+			}
 			checkpointName := containerName + strconv.Itoa(i)
-			err = container.Checkpoint(checkpointName, checkpointDir, false)
+			err = container.Checkpoint(checkpointName, checkpointDir, finalCheckpoint)
 			if err != nil {
 				log.Fatalf("Error creating checkpoint for container %s: %v", containerName, err)
 				return
@@ -143,13 +147,27 @@ func main() {
 					}
 				}
 			}
+			for filename := range prevFilenames {
+				if _, ok := curFilenames[filename]; !ok {
+					filePath := dstDir + "/" + filename
+
+					// Remove the file
+					err := os.Remove(filePath)
+					if err != nil {
+						fmt.Println("Error removing file:", err)
+						return
+					}
+
+					fmt.Println("File removed successfully!")
+				}
+			}
 
 		}
 		err = signal()
 		if err != nil {
 			log.Fatalf("Error %v", err)
 		}
-		container.Stop()
+		//container.Stop()
 		fmt.Println("Finished")
 	}
 

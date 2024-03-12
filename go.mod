@@ -5,7 +5,6 @@ go 1.22.0
 require (
 	github.com/checkpoint-restore/go-criu/v7 v7.0.0
 	github.com/docker/docker v25.0.3+incompatible
-	golang.org/x/sys v0.17.0
 	google.golang.org/protobuf v1.32.0
 )
 
@@ -30,6 +29,7 @@ require (
 	go.opentelemetry.io/otel/metric v1.23.1 // indirect
 	go.opentelemetry.io/otel/sdk v1.23.1 // indirect
 	go.opentelemetry.io/otel/trace v1.23.1 // indirect
+	golang.org/x/sys v0.17.0 // indirect
 	golang.org/x/time v0.5.0 // indirect
 	gotest.tools/v3 v3.5.1 // indirect
 )

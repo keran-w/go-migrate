@@ -1,9 +1,2 @@
 #!/bin/sh
-START="${START:-1}"
-END="${END:-100}"
-
-for i in $(seq "$START" "$END"); do
-  CURR="$i"
-  echo "$CURR"
-  sleep 1
-done
+i=0; while true; do echo $i; i=$(expr $i + 1); sleep 1; done
