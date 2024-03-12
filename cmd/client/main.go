@@ -4,7 +4,7 @@ import (
 	"github.com/keran-w/go-migrate/docker"
 	"log"
 	"os/exec"
-	_ "time"
+	"time"
 )
 
 func main() {
@@ -20,11 +20,18 @@ func main() {
 	// checkpointName := "checkpointA-" + time.Now().Format("MM-DDTHH-mm")
 	checkpointName := "checkpointA-1"
 	checkpointDir := "/home/ubuntu/go-migrate/checkpoints"
+
+	startTime := time.Now()
+
 	err = container.Checkpoint(checkpointName, checkpointDir, false)
 	if err != nil {
 		log.Fatalf("Error creating checkpoint for container %s: %v", containerName, err)
 		return
 	}
+
+	endTime := time.Now()
+	duration := endTime.Sub(startTime)
+	log.Printf("Time taken for checkpoint: %v\n", duration)
 
 	cmd := exec.Command("sudo", "chmod", "-R", "777", "./checkpoints")
 	if cmd.Run() != nil {

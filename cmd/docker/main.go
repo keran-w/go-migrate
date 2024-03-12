@@ -9,7 +9,7 @@ func main() {
 
 	imageName := "m1-number-printer-image:1.0"
 	containerName := "m1-number-printer-container-A"
-	env := []string{"START=50", "END=3000"}
+	env := []string{"START=0", "END=3000"}
 	container, err := docker.NewContainer(containerName, imageName, env)
 	if err != nil {
 		log.Fatalf("Error creating container %s: %v", containerName, err)
