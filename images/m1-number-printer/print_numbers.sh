@@ -7,3 +7,4 @@ for i in $(seq "$START" "$END"); do
   echo "$CURR"
   sleep 1
 done
+
