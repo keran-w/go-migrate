@@ -5,7 +5,7 @@ go 1.22.0
 require (
 	github.com/checkpoint-restore/go-criu/v7 v7.0.0
 	github.com/docker/docker v25.0.3+incompatible
-	google.golang.org/protobuf v1.32.0
+	google.golang.org/protobuf v1.33.0
 )
 
 require (
